@@ -13,7 +13,7 @@ Professional Communication and Presentation Skills - 4th Milestone Project for t
 ### Configure Visual Studio Code environment
 
 3. New Window.
-4. Clone Repository -> GitHub -> [GaffCoConsultingTandD](https://github.com/NaoiseGaffney/GaffCoConsultingTandD).
+4. Clone Repository -> GitHub -> [CI-PTD-II](https://github.com/NaoiseGaffney/CI-PTD-II).
 5. Select development branch.
 6. Create a virtual Python environment - Terminal: `python3 -m venv .venv`
 7. Activate virtual Python environment - Terminal: `source .venv/bin/activate`
@@ -29,8 +29,11 @@ Professional Communication and Presentation Skills - 4th Milestone Project for t
 ## Django Migrations (Version Control System for the Database Schema)'
 
 > *migrate*, which is responsible for applying and unapplying migrations.
+>
 > *makemigrations*, which is responsible for creating new migrations based on the changes you have made to your models.
+>
 > *sqlmigrate*, which displays the SQL statements for a migration.
+>
 > *showmigrations*, which lists a project’s migrations and their status.
 
 Link: https://docs.djangoproject.com/en/3.1/topics/migrations/
@@ -255,14 +258,3 @@ def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
 
 ````
-
-#### Templates
-
-33. Create the "polls/templates" and "polls/templates/polls" directories.
-34. Create "index.html".
-
-...
-
-#### Install and Configure Django Debug Toolbar
-`pip install django-debug-toolbar`
-
