@@ -114,46 +114,39 @@ LOGIN_REDIRECT_URL = '/'
 36. Update Project urls.py to include the new Home URL.
 37. Add Home to installed apps in Project settings.py.
 38. Add both to the TEMPLATES DIRS in settings.py.
-### Install Django Debug Toolbar
 
-100. pip3 install django-debug-toolbar
-101. Add app to settings.py:
+### Configure static and media for Django
+
+39. Create the media folder in the Project root.
+40. Create the static folder with the following sub-folders: scripts (js), scripts/vendors (vendor js), styles (css).
+41. Configure 'settings.py' and 'urls.py' to accommodate the static and media folders.
 
 ```
-INSTALLED_APPS = [
-    # ...
-    'django.contrib.staticfiles',
-    # ...
-    'debug_toolbar',
-]
 
 STATIC_URL = '/static/'
+
+*STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')*
+
 ```
 
-102. Add to urls.py:
-
 ```
-import debug_toolbar
 from django.contrib import admin
 from django.urls import path, include
+*from django.conf import settings*
+*from django.conf.urls.static import static*
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('__debug__', include(debug_toolbar.urls)),
-]
+    path('', include('home.urls')),
+] *+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)*
 ```
-
-103. Add to MIDDLEWARE: `'debug_toolbar.middleware.DebugToolbarMiddleware',`
-104. Add INTERNAL_IPS:
-
-```
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
-```
-
-
 
 #### Create a Django Application as a Parent of the Django Project
 

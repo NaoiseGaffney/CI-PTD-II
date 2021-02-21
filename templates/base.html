@@ -21,6 +21,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Import Local CSS -->
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -46,7 +48,7 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- Initialise MaterializeCSS 1.0.0 Features -->
-    <script src="{{ url_for('static', filename = 'scripts/vendor/materialize.js') }}"></script>
+    <script src="{% static '/scripts/vendor/materialize.js' %}"></script>
     {% endblock %}
     
     {# *** Allow sub-templates to insert extra html to the bottom of the body *** #}
