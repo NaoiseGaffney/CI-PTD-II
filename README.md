@@ -1,4 +1,4 @@
-![GaffCo Consulting Logo](https://github.com/NaoiseGaffney/PTD/blob/master/Documentation/Gaffco_Logo.png)
+![GaffCo Consulting Logo](https://github.com/NaoiseGaffney/CI-PTD-II/blob/development/Documentation/Gaffco_Logo.png)
 
 # GaffCo Consulting Professional Training and Development: Professional Communication and Presentation Skills E-Commerce Website
 
