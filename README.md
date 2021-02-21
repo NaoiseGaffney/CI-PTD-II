@@ -1,45 +1,268 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+![GaffCo Consulting Logo](https://github.com/NaoiseGaffney/PTD/blob/master/Documentation/Gaffco_Logo.png)
 
-Welcome USER_NAME,
+# GaffCo Consulting Professional Training and Development: Professional Communication and Presentation Skills E-Commerce Website
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+Professional Communication and Presentation Skills - 4th Milestone Project for the Code Institute's Diploma in Full Stack Development. Project requirements: HTML 5, CSS 3, JavaScript, Python 3, Django, PostgreSQL, and API's. This project website is an e-commerce site for a Professional Communications and Presentation Skills Company (Sole Trader) called GaffCo Consulting.
+## GitHub
 
-## Gitpod Reminders
+1. Create GitHub Repository using the CI Full Template.
+2. Create a development branch (master + development).
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## Visual Studio Code
 
-`python3 -m http.server`
+### Configure Visual Studio Code environment
 
-A blue button should appear to click: *Make Public*,
+3. New Window.
+4. Clone Repository -> GitHub -> [GaffCoConsultingTandD](https://github.com/NaoiseGaffney/GaffCoConsultingTandD).
+5. Select development branch.
+6. Create a virtual Python environment - Terminal: `python3 -m venv .venv`
+7. Activate virtual Python environment - Terminal: `source .venv/bin/activate`
+8. Install Django 3.1 - Terminal: `pip3 install Django`
+9. Upgrade pip - Terminal: `pip3 install pip --upgrade`
+10. Check Django version - Terminal: `python3 -m django --version` = 3.1.7
+11. Update `.gitignore` to include `.venv`.
+### Create the Initial Django Project
 
-Another blue button should appear to click: *Open Browser*.
+12. Create a Django **Project** called "PTD" - Terminal: `django-admin startproject PTD .` (created in the current folder)
+13. Verify that the initial Django project works - Terminal: `python3 manage.py runserver 8000`, `http://127.0.0.1:8000/`
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+## Django Migrations (Version Control System for the Database Schema)'
 
-A blue button should appear to click: *Make Public*,
+> *migrate*, which is responsible for applying and unapplying migrations.
+> *makemigrations*, which is responsible for creating new migrations based on the changes you have made to your models.
+> *sqlmigrate*, which displays the SQL statements for a migration.
+> *showmigrations*, which lists a project’s migrations and their status.
 
-Another blue button should appear to click: *Open Browser*.
+Link: https://docs.djangoproject.com/en/3.1/topics/migrations/
+14. Apply the initial Django migrations: `python3 manage.py migrate`, add `--plan`to validate before commit.
+15. Create Django Admin superuser account: `python3 manage.py createsuperuser`, `gaff`, `naoise.gaff.gaffney@gmail.com`, `password....`
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## Django AllAuth Application
 
-## Updates Since The Instructional Video
+Link: https://django-allauth.readthedocs.io/en/latest/
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+Similar to the Flask-User extension.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+16. Install Django AllAuth: `pip3 install django-allauth`
+17. Configure AllAuth in *settings.py* based on the information: `https://django-allauth.readthedocs.io/en/latest/installation.html`
+18. Add AUTHENTICATION_BACKENDS:
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+```
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+```
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+19. Add INSTALLED_APPS:
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+```
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+```
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+20. Add AUTHENTICATION_BACKEND:
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+```
+SITE_ID = 1
+```
 
---------
+21. Add accounts URL to *urls.py*: `path('accounts/', include('allauth.urls')),` and import include: `from django.urls import path, include`
+22. Update the DB Schema: `python3 manage.py migrate` as we added apps.
+23. Run Server: `python3 manage.py runserver`
+24. Login to admin interface and update the site to `gaffcoconsulting.example.com` and the display name to `GaffCo Consulting Professional Training`.
+25. In settings.py add AllAuth configuration for e-mail settings:
 
-Happy coding!
+```
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Log E-Mails to Console
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+```
+
+### Requirements.txt and Templates Directories
+
+26. `pip3 freeze > requirements.txt`
+27. Create templates/allauth: `mkdir templates`and `mkdir templates/allauth`
+28. Stage -> Commit -> Synch/Push
+
+### Base Templates
+
+29. Copy templates to allow modification with Materialize CSS 1.0.0: `cp -r .venv/lib/python3.8/site-packages/allauth/templates/* templates/allauth`
+30. Create a template/base.html. Use Materialize CSS 1.0.0 and add blocks to `base.html`
+
+### Create Django Home Application
+
+31. Create a Django **Application** called "home" - Terminal: `python3 manage.py startapp home`
+32. Create Home Templates directories home/templates/home.
+33. Create index.html.
+34. Edit home/views.py to add -> home/index.html
+35. Create and edit home/urls.py.
+36. Update Project urls.py to include the new Home URL.
+37. Add Home to installed apps in Project settings.py.
+38. Add both to the TEMPLATES DIRS in settings.py.
+### Install Django Debug Toolbar
+
+100. pip3 install django-debug-toolbar
+101. Add app to settings.py:
+
+```
+INSTALLED_APPS = [
+    # ...
+    'django.contrib.staticfiles',
+    # ...
+    'debug_toolbar',
+]
+
+STATIC_URL = '/static/'
+```
+
+102. Add to urls.py:
+
+```
+import debug_toolbar
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
+    path('__debug__', include(debug_toolbar.urls)),
+]
+```
+
+103. Add to MIDDLEWARE: `'debug_toolbar.middleware.DebugToolbarMiddleware',`
+104. Add INTERNAL_IPS:
+
+```
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+```
+
+
+
+#### Create a Django Application as a Parent of the Django Project
+
+13. Create a Django **Application** called "todo" - Terminal: `python3 manage.py startapp todo`
+14. Add the first **View** in "polls/views.py.
+15. Create the first **URL** in "polls/urls.py" (create the file).
+16. Point the root URLconf at the "polls/urls.py".
+17. Verify that the new URL's work -  Terminal: `python manage.py runserver`, `http://127.0.0.1:8000/polls/`
+
+#### Database Setup
+
+18. Update "mysite/mysite/settings.py" to use the correct database binding, default is "sqlite3".
+19. Update `TIME_ZONE = 'GMT'`.
+20. Create the **Database** tables for the `INSTALLED_APPS` in "settings.py" - Terminal: `python manage.py migrate`
+
+#### Creating Models
+
+21. Update "polls/models.py" with the models (Question and Choice).
+
+#### Activating Models (Change the Models in "models.py", run `python manage.py makemigrations` to create migrations for those changes, and `python manage.py migrate` to apply those changes to the database.)
+
+22. Add `polls.apps.PollsConfig` to "mysite/mysite/settings.py".
+23. Store the Models as migrations - Terminal: `python manage.py makemigrations polls`
+24. (Optional) View, to verify, the SQL statements that are used by `migrate` to create the database tables - Terminal: `python manage.py sqlmigrate polls 0001`
+25. Create the **Database** tables for the new Models - Terminal: `python manage.py migrate`
+
+#### Playing with the API
+
+26. `python manage.py shell`, shell ensures that manage.py sets the `DJANGO_SETTINGS_MODULE` environment variable.
+27. Add...
+
+```
+
+import datetime
+from django.utils import timezone
+...
+    def __str__(self):
+        return self.question_text
+...
+    def __str__(self):
+            return self.choice_text
+...
+    def was_published_recently(self):
+            return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
+```
+
+#### Django Admin
+
+28. Create an admin user - Terminal: `python manage.py createsuperuser`
+29. Verify that the Admin URL works -  Terminal: `python manage.py runserver`, `http://127.0.0.1:8000/admin/`
+30. Make the poll application modifiable in Django Admin in "polls/admin.py".
+
+#### Views and URL's
+
+31. Update "polls/views.py" with more **Views**.
+32. Update "polls/urls.py" with more **URL's** linked to the **Views**.
+
+URL's -> Views -> Models
+
+**polls/urls.py**
+
+````
+
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    # ex: /polls/
+    path('', views.index, name='index'),
+    # ex: /polls/5/
+    path('<int:question_id>/', views.detail, name='detail'),
+    # ex: /polls/5/results/
+    path('<int:question_id>/results/', views.results, name='results'),
+    # ex: /polls/5/vote/
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
+
+````
+
+**polls/views.py**
+
+````
+
+from django.shortcuts import render
+
+# Create your views here.
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
+
+def detail(request, question_id):
+    return HttpResponse("You're looking at question %s." % question_id)
+
+def results(request, question_id):
+    response = "You're looking at the results of question %s."
+    return HttpResponse(response % question_id)
+
+def vote(request, question_id):
+    return HttpResponse("You're voting on question %s." % question_id)
+
+````
+
+#### Templates
+
+33. Create the "polls/templates" and "polls/templates/polls" directories.
+34. Create "index.html".
+
+...
+
+#### Install and Configure Django Debug Toolbar
+`pip install django-debug-toolbar`
+

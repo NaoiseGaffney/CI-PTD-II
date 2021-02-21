@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block meta %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="Developer and Designer: Naoise Gaffney - 'Gaff'. Title: Professional Training and Development
+    Reason: fourth milestone project for the Code Institute Diploma in Full Stack Development using HTML 5, CSS3, JavaScript,
+    Python 3.8, Django 3.1.7, PostgreSQL, and Materialize CSS 1.0.0. Description: Professional Training and Development for
+    GaffCo Consulting provides organisations with professional communication and presentation skills courses, and individuals with
+    professional communication and presentation skills coaching. This is a full stack e-commerce site.">
+    {% endblock %}
+
+    {% block extra_meta %}
+    {% endblock %}
+
+    {% block core_css %}
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    {% endblock %}
+
+    {% block extra_css %}
+    {% endblock %}
+
+    <title>Professional Training and Development - {% block extra_title %}{% endblock %}</title>
+</head>
+<body>
+    <header></header>
+
+    {% if messages %}
+    <div></div>
+    {% endif %}
+
+    {% block page_header %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+
+    {% block core_scripts %}
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Initialise MaterializeCSS 1.0.0 Features -->
+    <script src="{{ url_for('static', filename = 'scripts/vendor/materialize.js') }}"></script>
+    {% endblock %}
+    
+    {# *** Allow sub-templates to insert extra html to the bottom of the body *** #}
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
