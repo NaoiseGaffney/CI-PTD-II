@@ -20,8 +20,8 @@ body {
 /* Background image setting */
 html {
     /* background: url("/static/images/Gaffco_Logo.png") no-repeat center center fixed; */
-    background: url("/media/Gaffco_Logo.png") no-repeat center center fixed;
-    /* Photo by <a href="https://unsplash.com/@sharonmccutcheon?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Sharon McCutcheon</a> */
+    background: url("/media/MountainsSuccess.webp") no-repeat center center fixed;
+    /* Photo from Pixabay Free Images - Mountains: https://cdn.pixabay.com/photo/2019/01/27/22/32/mountains-3959204_1280.jpg */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
