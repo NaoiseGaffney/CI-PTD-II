@@ -2,13 +2,28 @@
 {% load static %}
 
 {% block content %}
-
-<section class="showcase">
-    <div class="container showcase-inner center white-text">
-        <h1>Organisations Achieve Greater Value through Professionally Coached Employees</h1>
-        <p>GaffCo Consulting Professional Communication Competence</p>
+<!-- parallax -->
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="/media/MountainsSuccess.webp" alt="Successful Mountain Runner" class="responsive-img">
     </div>
-</section>
+</div>
+
+<div class="transparent shadow z-depth-4">
+    <section class="showcase section">
+        <div class="container showcase-inner center black-text">
+            <h1>Organisations Achieve Greater Value through Professionally Coached Employees</h1>
+            <p>GaffCo Consulting Professional Communication Competence</p>
+        </div>
+    </section>
+</div>
+
+<!-- parallax -->
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="/media/MountainsSuccess.webp" alt="Successful Mountain Runner" class="responsive-img">
+    </div>
+</div>
 
 <div class="transparent shadow z-depth-4">
     <section class="container section">
@@ -160,24 +175,28 @@
     </div>
     
     <!-- footer -->
-    <footer class="page-footer grey darken-3">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5>About Me</h5>
-                    <p>Naoise Olof Seán Gaffney - "Gaff"</p>
-                </div>
-                <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">Connect</h5>
-                    <ul>
-                        <li><a class="grey-text text-lighten-3" href="#">Facebook</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#">LinkedIn</a></li>
-                    </ul>
+    <div class="transparent shadow">
+        <!-- <footer class="page-footer light-blue lighten-1"> -->
+        <footer class="page-footer orange darken-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5>About Me</h5>
+                        <p>Naoise Olof Seán Gaffney - "Gaff"</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Connect</h5>
+                        <ul>
+                            <li><a class="white-text" href="#">Facebook</a></li>
+                            <li><a class="white-text" href="#">LinkedIn</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-copyright grey darken-4">
-            <div class="container center-align">&copy; 2021 GaffCo Consulting</div>
-        </div>
-    </footer>
+            <!-- <div class="footer-copyright orange darken-2"> -->
+            <div class="footer-copyright black">
+                <div class="container center-align white-text">&copy; 2021 GaffCo Consulting</div>
+            </div>
+        </footer>
+    </div>
 {% endblock %}
